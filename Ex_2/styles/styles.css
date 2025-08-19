@@ -1,0 +1,110 @@
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+  margin: 2em auto;
+  padding: 1em;
+}
+
+.card {
+  background-color: #251c56;
+  padding: 1em 2em;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #fff;
+  transition: 0.3s;
+  text-align: center;
+  width: 180px;
+  max-height: 75px;
+  flex: 0 0 200px;
+  font-weight: bold;
+}
+
+.card:hover {
+  box-shadow: 0 0 60px rgb(208, 142, 255);
+  transform: scale(1.05);
+}
+
+table {
+  width: 90%;
+  margin: 2em auto;
+  border-collapse: collapse;
+  background-color: #251c56;
+  box-shadow: 0 0 10px #9067ea;
+}
+
+th, td {
+  border: 1px solid #444;
+  padding: 0.75em 1em;
+  text-align: center;
+}
+
+th {
+  background-color: #140e37;
+  color: white;
+}
+
+tr:hover {
+  background-color: #29115e;
+  color: white;
+  box-shadow: 0 0 10px whitesmoke;
+}
+
+tr:nth-child(even){
+  background-color: antiquewhite;
+  color: #000000;
+}
+
+form {
+  width: 80%;
+  margin: 2em auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em;
+  background-color: rgb(20, 14, 70);
+  border-radius: 10px;
+  box-shadow: 0 0 10px #fff;
+}
+
+input, select, textarea, button {
+  padding: 0.75em;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+input, select, textarea {
+  background-color: #261d6494;
+  color: white;
+}
+
+button {
+  border-radius: 12px;
+  background-color: #140d32;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  box-shadow: 0 0 50px #261d64;
+  background: black;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav {
+    flex-direction: column;
+  }
+
+  table, form {
+    width: 100%;
+  }
+}

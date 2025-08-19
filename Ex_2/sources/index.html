@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algorithm Arcade</title>
+  <link rel="stylesheet" href="../styles/styles.css" />
+  <style>
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-color: #2e236c;
+      text-align: center;
+      color: #fff;
+      transition: background 0.3s ease-in-out;
+    }
+
+    header, footer {
+        text-align: center;
+        padding: 2em 1em;
+        background: linear-gradient(135deg, #2e236c,#433d8d, #c8acd6);
+        color: rgb(165, 75, 186);
+        box-shadow: 0 0 20px #554a95;
+    }
+
+    nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.5em;
+    background-color: #22185a;
+    box-shadow: 0 0 5px #fff;
+    padding: 1em;
+    }
+
+    nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    transition: 0.3s;
+    }
+
+    nav a:hover {
+    background-color: #241b59;
+    box-shadow: 0 0 10px rgb(174, 130, 255);
+    }
+
+    header h1 {
+      color: #fff;
+      text-shadow: 0 0 10px #fff;
+    }
+
+    p.hero {
+      color: #ccc;
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1em;
+    }
+
+    a:link,a:visited,a:active{
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .sec{
+      display: flex;
+      flex-direction: row;
+    }
+
+    .sec #explore{
+      width: 25%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 style="margin-bottom: 0.2em; font-size: 2.7rem;">Welcome to Algorithm Arcade</h1>
+    <p class="hero">
+      Dive into the electrifying world of algorithms! Explore, compare, and contribute to a glowing universe of code—from sorting and searching to AI and pathfinding.
+    </p>
+  </header>
+
+  <nav>
+    <a href="#explore">Explore</a>
+    <a href="#compare">Compare</a>
+  </nav>
+  <br>
+  <div class="sec">
+    <section id="explore">
+    <h2 style="font-size: 2.2rem;">Algorithm Categories</h2>
+    <div class="card-grid">
+      <a href="sorting.html" target="_blank"><div class="card">Sorting</div></a>
+      <a href="searching.html" target="_blank"><div class="card">Searching</div></a>
+      <a href="Tree.html" target="_blank"><div class="card">Trees</div></a>
+      <a href="graph.html" target="_blank"><div class="card">Graphs</div></a>
+    </div>
+  </section>
+  <hr>
+  <section id="compare">
+    <h2>Algorithm Comparison Table</h2>
+    <table>
+      <thead>
+        <tr>
+          <th rowspan="2">Name</th>
+          <th rowspan="2">Category</th>
+          <th colspan="2">Complexity</th>
+          <th rowspan="2">Use Case</th>
+        </tr>
+        <tr>
+          <th>Time Complexity</th>
+          <th>Space Complexity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td>Bubble Sort</td>
+            <td>Sorting</td>
+            <td>O(n²)</td>
+            <td>O(1)</td>
+            <td>Simple educational tool</td>
+        </tr>
+        <tr>
+            <td>Binary Search</td>
+            <td>Searching</td>
+            <td>O(log n)</td>
+            <td>O(1)</td>
+            <td>Search in sorted arrays</td>
+        </tr>
+        <tr>
+            <td>Dijkstra's</td>
+            <td>Graphs</td>
+            <td>O(E + V log V)</td>
+            <td>O(V)</td>
+            <td>Shortest path in weighted graphs</td>
+        </tr>
+        <tr>
+            <td>Merge Sort</td>
+            <td>Sorting</td>
+            <td>O(n log n)</td>
+            <td>O(n)</td>
+            <td>Stable efficient sort</td>
+        </tr>
+        <tr>
+            <td>Kruskal's</td>
+            <td>Graphs</td>
+            <td>O(E log E)</td>
+            <td>O(E)</td>
+            <td>Minimum spanning tree</td>
+        </tr>
+        <tr>
+            <td>Knapsack</td>
+            <td>Dynamic Programming</td>
+            <td>O(nW)</td>
+            <td>O(nW)</td>
+            <td>Resource allocation</td>
+        </tr>
+        <tr>
+            <td>DFS</td>
+            <td>Graphs</td>
+            <td>O(V + E)</td>
+            <td>O(V)</td>
+            <td>Graph traversal</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  </div>
+  <br>
+  <footer style="color: white;">
+    <p>🚀 Algorithm Arcade © 2025 | Made with 💻 and ☕</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,429 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f0f0;
+    color: #1a202c;
+    margin: 0;
+}
+
+nav{
+    position: relative;
+    left: 12.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 6vh;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.25em;
+}
+
+div.link{
+    width: 10vw;
+    margin: none;
+    height: 5vh;
+    text-align: center;
+}
+
+div.link:hover{
+    transform: scale(1.1);
+}
+
+.container {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding: 2rem;
+}
+
+.bangers-font, h1, h2, h3, .modal-title {
+    font-family: 'Bangers', cursive;
+}
+
+h2, h3 {
+    margin-bottom: 1rem;
+}
+
+p {
+    line-height: 1.625;
+    margin-bottom: 1rem;
+}
+
+.header {
+    background-color: #d62626;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-center{
+    display: flex;
+    align-content: center;
+}
+
+.header-left{
+    display: flex;
+    align-content: flex-start;
+}
+
+.header-right{
+    display: flex;
+    align-content: flex-end;
+}
+
+.header-center {
+    flex-grow: 1;
+    justify-content: center;
+}
+
+#real-time-clock {
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: monospace;
+}
+
+.header h1 {
+    font-size: 1.875rem;
+    margin: 0;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list li a {
+    color: white;
+    text-decoration: none;
+    padding: 0 1rem;
+}
+
+.nav-list li a:hover { 
+    text-decoration: underline;
+}
+
+.cars-logo {
+    width: 100px;
+    height: auto;
+}
+
+.hero-section {
+    position: relative;
+    background-color: black;
+    color: white;
+    padding: 5rem 0;
+    text-align: center;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://placehold.co/1200x600/000/fff?text=Lightning+McQueen+Racing');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+}
+
+.hero-content h2 { 
+    font-size: 3rem;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.main-content {
+    padding: 2rem;
+    margin: 2rem auto;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.bold-text {
+    font-weight: 700;
+}
+
+.italic-text {
+    font-style: italic;
+}
+
+.underline-text {
+    text-decoration: underline;
+}
+
+.overline-text {
+    text-decoration: overline;
+}
+
+.strikethrough-text {
+    text-decoration: line-through;
+}
+
+.text-red-500 {
+    color: #ef4444;
+}
+
+.text-yellow-500 {
+    color: #eab308;
+}
+
+.highlight-word {
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.highlight-word:hover {
+    background-color: #fcd34d;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.hidden-content {
+    display: none;
+}
+
+.button {
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.button-primary {
+    background-color: #1a202c;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button-primary:hover {
+    background-color: #2d3748;
+}
+
+.button-secondary {
+    background-color: #a0aec0;
+    color: #1a202c;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button-secondary:hover {
+    background-color: #718096;
+}
+
+.button-red {
+    background-color: #dc2626;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button-red:hover {
+    background-color: #b91c1c;
+}
+
+.button-yellow {
+    background-color: #fcd34d;
+    color: black;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button-yellow:hover {
+    background-color: #facc15;
+}
+
+.button-blue {
+    background-color: #2563eb;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button-blue:hover {
+    background-color: #1d4ed8;
+}
+
+.dhtml-controls {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.hr-separator {
+    border: 0;
+    height: 1px;
+    background: #e2e8f0;
+    margin-block: 3rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.gallery-grid img {
+    width: 300px;
+    height: 300px;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+}
+
+.form-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.form-input, .form-select, .form-textarea {
+    margin-top: 0.25rem;
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+    outline: none;
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
+}
+
+.form-error {
+    font-size: 0.875rem;
+    color: #ef4444;
+    margin-top: 0.25rem;
+    display: none;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-log {
+    background-color: #e2e8f0;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.log-entry {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.log-entry p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.log-entry h4 {
+    font-weight: bold;
+    font-size: 1.125rem;
+    color: #dc2626;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 70%;
+}
+
+.modal-title {
+    font-size: 1.875rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.modal-description {
+    color: white;
+    text-align: center;
+    margin-top: 1rem;
+    max-width: 80%;
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close-btn:hover, .close-btn:focus {
+    color: #bbb;
+    text-decoration: none;
+}
+
+.footer {
+    background-color: #2d3748;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .header h1 {
+        font-size: 2.25rem;
+    }
+}
+
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}

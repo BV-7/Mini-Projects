@@ -1,0 +1,82 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #0e0e2c;
+  color: #fff;
+}
+
+header{
+  text-align: center;
+}
+
+#home{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('img2.jpg');
+    text-align: center;
+}
+
+h1, h2, h3 {
+  color: #f4c430;
+  text-align: center;
+}
+
+p{
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+section {
+  padding: 2rem;
+  margin: 1rem 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.timeline {
+  display: flex;
+  grid-row:auto;
+  overflow-x: auto;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+#map{
+    width: 1152px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 12px;
+}
+
+#infomap{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #111;
+    text-align: center;
+    font-size: 3rem;
+}
+
+area {
+  outline: none;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #1e1e40;
+  color: #bbb;
+  margin-top: 2rem;
+}
+
+.checkpoint{
+    border-radius: 15px;
+    border: none;
+    background-color: #00002e;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgb(28, 44, 100);
+    width: 185px;
+    text-align: center;
+    justify-content: center;
+}
