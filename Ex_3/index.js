@@ -7,14 +7,21 @@ const modal = document.getElementById('myModal')
 const modalImage = document.getElementById('modal-image')
 const modalTitle = document.getElementById('modal-title')
 const modalDescription = document.getElementById('modal-description')
-const messageTextarea = document.getElementById('message')
 const wordCountSpan = document.getElementById('word-count')
+
+const name = document.getElementById('full-name')
+const email = document.getElementById('email')
+const phone = document.getElementById('phone')
+const dob = document.getElementById('dob')
+const favoriteCar = document.getElementById('favorite-car')
+const messageTextarea = document.getElementById('message')
+const submitbtn = document.getElementById('submit')
 
 const wordLimit = 50
 const currentFontSize = 1.125
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const phoneRegex = /^\d{10}$/
-const userRegex = /^[A-Za-z]+$/
+const userRegex = /^[A-Za-z ]+$/
 
 const initialText = `<p>Welcome, rookie racers! The Rust-eze Racing Academy is more than just a training facility; it's a family. Founded by the legendary Lightning McQueen, our mission is to prepare the next generation of champions for the high-stakes world of the Piston Cup. From learning advanced driving techniques to mastering the art of a quick pit stop, you'll be taught by the best in the business.</p>
                     <p id="more-content" class="hidden-content">Our curriculum is designed to push you to your limits, just as Doc Hudson pushed Lightning. We believe in speed, precision, and most importantly, heart. The road to success is long and filled with challenges, but with the right mentorship and a lot of horsepower, you can reach the finish line. Are you ready to rev your engines?</p>`;
@@ -94,65 +101,100 @@ document.addEventListener('DOMContentLoaded', () => {
     messageTextarea.addEventListener('input', () => {
         wordCountSpan.textContent = (messageTextarea.value.match(/\b\S+\b/g) || []).length;
     });
-
-    form.addEventListener('submit', event => {
-        event.preventDefault();
-        document.querySelectorAll('.form-error').forEach(msg => msg.style.display = 'none');
+    
+    name.addEventListener("blur", () => {
+        if(userRegex.test(name.value.trim())) {
+            email.removeAttribute('disabled');
+            email.classList.remove('contains-disabled');
+            name.classList.add('crt');
+        }else{
+            document.getElementById('name-error').textContent = 'Please enter a valid name (letters only).';
+            document.getElementById('name-error').style.display = 'block';
+        }
+    });
+    email.addEventListener("blur", () => {
+        if(emailRegex.test(email.value.trim())) {
+            phone.removeAttribute('disabled');
+            phone.classList.remove('contains-disabled');
+            email.classList.add('crt');
+        }else{
+            document.getElementById('email-error').textContent = 'Please enter a valid email address.';
+            document.getElementById('email-error').style.display = 'block';
+        }
+    });
+    phone.addEventListener("blur", () => {
+        if(phoneRegex.test(phone.value.trim())) {
+            dob.removeAttribute('disabled');
+            dob.classList.remove('contains-disabled');
+            phone.classList.add('crt');
+        }else{
+            document.getElementById('phone-error').textContent = 'Please enter a valid 10-digit phone number.';
+            document.getElementById('phone-error').style.display = 'block';
+        }
+    });
+    dob.addEventListener("blur", () => {
+        const today = new Date();
+        const [today_date, today_month, today_year] = [today.getDate(), today.getMonth() + 1, today.getFullYear()];
+        const formattedToday = `${today_year}-${String(today_month).padStart(2, '0')}-${String(today_date).padStart(2, '0')}`;
+        if(formattedToday <= dob.value.trim()) {
+            document.getElementById('dob-error').textContent = 'Please enter your date of birth.';
+            document.getElementById('dob-error').style.display = 'block';
+        }else{
+            favoriteCar.removeAttribute('disabled');
+            favoriteCar.classList.remove('contains-disabled');
+            dob.classList.add('crt');
+        }
+    });
+    favoriteCar.addEventListener("blur", () => {
+        if(favoriteCar.value.trim()) {
+            messageTextarea.removeAttribute('disabled');
+            messageTextarea.classList.remove('contains-disabled');
+            submitbtn.removeAttribute('disabled');
+            submitbtn.classList.remove('contains-disabled');
+            favoriteCar.classList.add('crt');
+        }else{
+            document.getElementById('fav-car-error').textContent = 'Please select your favorite Cars character.';
+            document.getElementById('fav-car-error').style.display = 'block';
+        }
+    });
+    messageTextarea.addEventListener("blur", () => {
         const wordsInMessage = (messageTextarea.value.match(/\b\S+\b/g) || []).length;
         let isValid = wordsInMessage <= wordLimit;
-        const formData = new FormData(form), data = {};
-        if (!isValid) {
+        messageTextarea.classList.add('crt');
+        if (isValid) {
+            submitbtn.addEventListener('click',() => {
+                const formData = new FormData(form), data = {};
+
+                for (const [key, value] of formData.entries()) {
+                    data[key] = value.trim();
+                }
+
+                if (formLog.querySelector('p.italic')) formLog.innerHTML = '';
+        
+                const logEntry = document.createElement('div');
+                logEntry.className = 'log-entry';
+                logEntry.innerHTML =   `<h4>New Application Submitted!</h4>
+                                        <p><strong>Name:</strong> ${data['full-name']}</p>
+                                        <p><strong>Email:</strong> ${data['email']}</p>
+                                        <p><strong>Phone:</strong> ${data['phone']}</p>
+                                        <p><strong>Date of Birth:</strong> ${data['dob']}</p>
+                                        <p><strong>Favorite Character:</strong> ${data['favorite-car']}</p>
+                                        <p><strong>Message:</strong> ${data['message']}</p>
+                                        <p style="font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem;">Submitted at: ${new Date().toLocaleString()}</p>`;
+            
+                formLog.prepend(logEntry);
+                form.reset();
+                email.setAttribute('style','disabled'); email.classList.add('contains-disabled');
+                phone.setAttribute('style','disabled'); phone.classList.add('contains-disabled');
+                dob.setAttribute('style','disabled'); dob.classList.add('contains-disabled');
+                favoriteCar.setAttribute('style','disabled'); favoriteCar.classList.add('contains-disabled');
+                messageTextarea.setAttribute('style','disabled'); messageTextarea.classList.add('contains-disabled');
+                submitbtn.setAttribute('style','disabled'); submitbtn.classList.add('contains-disabled');
+                wordCountSpan.textContent = '0';
+            });
+        }else{
             document.getElementById('message-error').textContent = `Please limit your message to ${wordLimit} words.`;
             document.getElementById('message-error').style.display = 'block';
-        }
-        for (const [key, value] of formData.entries()) {
-
-            data[key] = value.trim();
-            let errorElement = null;
-            
-            if (key === 'full-name' && !userRegex.test(value.trim())) {
-                errorElement = document.getElementById('name-error');
-                isValid = false;
-            }
-            else if (key === 'email' && !emailRegex.test(value.trim())) {
-                errorElement = document.getElementById('email-error');
-                isValid = false;
-            }
-            else if (key === 'phone' && !phoneRegex.test(value.trim())) {
-                errorElement = document.getElementById('phone-error');
-                isValid = false;
-            }
-            else if (key === 'dob' && !value.trim()) {
-                errorElement = document.getElementById('dob-error');
-                isValid = false;
-            }
-            else if (key === 'favorite-car' && !value.trim()) {
-                errorElement = document.getElementById('fav-car-error');
-                isValid = false;
-            }
-            else if (key === 'message' && !value.trim()) {
-                errorElement = document.getElementById('message-error');
-                isValid = false;
-            }
-            if (errorElement) errorElement.style.display = 'block';
-        }
-        if (isValid) {
-            if (formLog.querySelector('p.italic')) formLog.innerHTML = '';
-
-            const logEntry = document.createElement('div');
-            logEntry.className = 'log-entry';
-            logEntry.innerHTML =   `<h4>New Application Submitted!</h4>
-                                    <p><strong>Name:</strong> ${data['full-name']}</p>
-                                    <p><strong>Email:</strong> ${data['email']}</p>
-                                    <p><strong>Phone:</strong> ${data['phone']}</p>
-                                    <p><strong>Date of Birth:</strong> ${data['dob']}</p>
-                                    <p><strong>Favorite Character:</strong> ${data['favorite-car']}</p>
-                                    <p><strong>Message:</strong> ${data['message']}</p>
-                                    <p style="font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem;">Submitted at: ${new Date().toLocaleString()}</p>`;
-
-            formLog.prepend(logEntry);
-            form.reset();
-            wordCountSpan.textContent = '0';
         }
     });
 
