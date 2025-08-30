@@ -184,13 +184,15 @@ document.addEventListener('DOMContentLoaded', () => {
             
                 formLog.prepend(logEntry);
                 form.reset();
-                email.setAttribute('style','disabled'); email.classList.add('contains-disabled');
-                phone.setAttribute('style','disabled'); phone.classList.add('contains-disabled');
-                dob.setAttribute('style','disabled'); dob.classList.add('contains-disabled');
-                favoriteCar.setAttribute('style','disabled'); favoriteCar.classList.add('contains-disabled');
-                messageTextarea.setAttribute('style','disabled'); messageTextarea.classList.add('contains-disabled');
-                submitbtn.setAttribute('style','disabled'); submitbtn.classList.add('contains-disabled');
+                name.classList.remove('crt');
+                email.setAttribute('style','disabled'); email.classList.add('contains-disabled'); email.classList.remove('crt');
+                phone.setAttribute('style','disabled'); phone.classList.add('contains-disabled'); phone.classList.remove('crt');
+                dob.setAttribute('style','disabled'); dob.classList.add('contains-disabled'); dob.classList.remove('crt');
+                favoriteCar.setAttribute('style','disabled'); favoriteCar.classList.add('contains-disabled'); favoriteCar.classList.remove('crt');
+                messageTextarea.setAttribute('style','disabled'); messageTextarea.classList.add('contains-disabled'); messageTextarea.classList.remove('crt');
+                submitbtn.setAttribute('style','disabled'); submitbtn.classList.add('contains-disabled'); submitbtn.classList.remove('crt');
                 wordCountSpan.textContent = '0';
+
             });
         }else{
             document.getElementById('message-error').textContent = `Please limit your message to ${wordLimit} words.`;
