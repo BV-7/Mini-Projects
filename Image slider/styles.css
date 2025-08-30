@@ -1,0 +1,50 @@
+.slider{
+    position: relative;
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.slider img{
+    width: 100%;
+    display: none;
+}
+
+img.displayslide{
+    display: inline-block;
+    animation-name: fade;
+    animation-duration: 2s;
+}
+
+.slider button{
+    position: absolute;
+    top: 50%;
+    font-size: 3rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.300);
+    cursor: pointer;
+    padding: 15px 25px 15px 25px;
+    border: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.slider button:hover{
+    background-color: rgba(0, 0, 0, 0.500);
+}
+
+.prev{
+    left: 0;
+}
+
+.next{
+    right: 0;
+}
+
+@keyframes fade {
+    from{
+        opacity: 50%;
+    }
+    to{
+        opacity: 100%;
+    }
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Fetching</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <div id="heading">
+            <h1>FETCHING POKEMON DATA</h1>
+            <p>Enter the name of your Favourite pokemon to fetch it's data.</p><br>
+        </div>
+        <div id="input">
+            <label for="name">Pokemon Name: </label>
+            <input id='name' type="text">
+            <button id="fetch" onclick="fetchdata()">FETCH</button>
+            <button id="reset" onclick="reset()">RESET</button>
+        </div>
+        <div id="result">
+            <div id="resimage">
+                <img id="img">
+            </div>
+            <div id="stats">
+                <div id="resid">ID: </div>
+                <div id="resname">NAME: </div>
+                <div id="resheight">HEIGHT: </div>
+                <div id="resweight">WEIGHT: </div>
+                <div id="restype">TYPE: </div>
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+    </body>
+</html>

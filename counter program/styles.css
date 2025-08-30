@@ -1,0 +1,38 @@
+body{
+    background-color: black;
+}
+
+label{
+    display: block;
+    text-align: center;
+    font-size: 7em;
+    margin: .1em 0 .1em 0;
+    color: yellow;
+}
+
+h1{
+    text-align: center;
+    font-size: 3.5em;
+    color: yellow;
+}
+
+div{
+    text-align: center;
+}
+
+button{
+    height: 50px;
+    width: 100px;
+    margin: 0 6px 0 6px;
+    border-radius: 12%;
+    border: none;
+    color: white;
+    background-color: rgb(240, 128, 128);
+}
+
+button:hover{
+    background-color: rgba(151, 82, 82, 0.8);
+    box-shadow: 0 0 20px rgb(240, 128, 128);
+    cursor: pointer;
+    transition: .4s;
+}

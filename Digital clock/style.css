@@ -1,0 +1,23 @@
+#container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+body{
+background-image: url("lululu.png");
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+margin: 0%;
+}
+
+#clock{
+font-size: 7rem;
+font-family: monospace;
+color: aliceblue;
+font-weight: bold;
+text-align: center;
+backdrop-filter: blur(15px);
+}

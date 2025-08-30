@@ -1,0 +1,77 @@
+body{
+    position: relative;
+    font-size: 2rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    left: 34%;
+}
+
+.weatherform{
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    display: flex;
+    align-items:flex-start;
+}
+
+.cityinput{
+    width: 220px;
+    height: 35px;
+    padding: 0px 12px;
+    margin-right: 20px;
+}
+
+button{
+    width: 150px;
+    height: 40px;
+    padding: 12px 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(50, 205, 50);
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover{
+    box-shadow:0 0 15px rgba(50, 105, 50);
+    background-color: rgb(50, 105, 50);
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    right: 60%;
+    height: 700px;
+    background: linear-gradient(180deg, purple,indigo, lightblue,lime, yellow, orange,red );
+    border-radius: 25px;
+    box-shadow: 0 0 35px rgba(38, 38, 38, 0.4);
+    cursor: pointer;
+    margin: 0px 0px;
+    color: white;
+    -webkit-text-stroke-width: 2.2px; 
+    -webkit-text-stroke-color: black;
+    color: whitesmoke;
+}
+
+p{
+    font-size: 3rem;
+    margin: 5px 0px;
+}
+
+.emoji{
+    font-size: 15rem;
+    margin-bottom: 10px;
+}
+
+h1{
+    font-size: 5rem;
+    margin: 10px 0px;
+}
