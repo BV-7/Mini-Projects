@@ -107,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
             email.removeAttribute('disabled');
             email.classList.remove('contains-disabled');
             name.classList.add('crt');
+            document.getElementById('name-error').textContent = '';
         }else{
             document.getElementById('name-error').textContent = 'Please enter a valid name (letters only).';
             document.getElementById('name-error').style.display = 'block';
@@ -117,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             phone.removeAttribute('disabled');
             phone.classList.remove('contains-disabled');
             email.classList.add('crt');
+            document.getElementById('email-error').textContent = '';
         }else{
             document.getElementById('email-error').textContent = 'Please enter a valid email address.';
             document.getElementById('email-error').style.display = 'block';
@@ -127,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dob.removeAttribute('disabled');
             dob.classList.remove('contains-disabled');
             phone.classList.add('crt');
+            document.getElementById('phone-error').textContent = ''
         }else{
             document.getElementById('phone-error').textContent = 'Please enter a valid 10-digit phone number.';
             document.getElementById('phone-error').style.display = 'block';
@@ -140,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('dob-error').textContent = 'Please enter your date of birth.';
             document.getElementById('dob-error').style.display = 'block';
         }else{
+             document.getElementById('dob-error').textContent = '';
             favoriteCar.removeAttribute('disabled');
             favoriteCar.classList.remove('contains-disabled');
             dob.classList.add('crt');
@@ -152,6 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
             submitbtn.removeAttribute('disabled');
             submitbtn.classList.remove('contains-disabled');
             favoriteCar.classList.add('crt');
+            document.getElementById('fav-car-error').textContent = '';
         }else{
             document.getElementById('fav-car-error').textContent = 'Please select your favorite Cars character.';
             document.getElementById('fav-car-error').style.display = 'block';
@@ -192,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 messageTextarea.setAttribute('style','disabled'); messageTextarea.classList.add('contains-disabled'); messageTextarea.classList.remove('crt');
                 submitbtn.setAttribute('style','disabled'); submitbtn.classList.add('contains-disabled'); submitbtn.classList.remove('crt');
                 wordCountSpan.textContent = '0';
-
+                document.getElementById('message-error').textContent = '';
             });
         }else{
             document.getElementById('message-error').textContent = `Please limit your message to ${wordLimit} words.`;

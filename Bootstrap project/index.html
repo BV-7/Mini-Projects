@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vignesh's Interactive Bootstrap Portfolio — Tag Zoo</title>
+
+  <!-- Bootstrap 5 CSS (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts (optional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* Basic theming + utility additions */
+    :root{
+      --primary:#0d6efd;
+      --dark:#0b1220;
+      --glass: rgba(255,255,255,0.08);
+    }
+    body {
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#f8fafc, #eef2ff 60%);
+      color: #111827;
+      transition: background .25s, color .25s;
+    }
+    .dark-theme {
+      background: linear-gradient(180deg,#06111a, #0b1220 60%);
+      color: #e6eef8;
+    }
+
+    /* Hero gradient box */
+    .hero {
+      background: linear-gradient(135deg, rgba(13,110,253,0.08), rgba(99,102,241,0.06));
+      border-radius: 1rem;
+    }
+
+    /* Card hover */
+    .card:hover { transform: translateY(-6px) scale(1.01); transition: transform .25s ease; }
+
+    /* Fancy marquee replacement (for legacy <blink> support) */
+    marquee, .marquee {
+      display:block;
+      white-space:nowrap;
+      overflow:hidden;
+    }
+    .marquee span {
+      display:inline-block;
+      padding-left:100%;
+      animation: slide-left 12s linear infinite;
+    }
+    @keyframes slide-left { 0%{transform:translateX(0)} 100%{transform:translateX(-100%)} }
+
+    /* Blink polyfill */
+    blink, .blink {
+      animation: blinker 1s step-start infinite;
+    }
+    @keyframes blinker { 50% { opacity: 0; } }
+
+    /* Floating / glass effect */
+    .glass {
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(6px);
+    }
+    .dark-theme .glass { background: rgba(255,255,255,0.03); }
+
+    /* small utilities */
+    .badge-cta { background:linear-gradient(90deg,#7c3aed,#2563eb); color:white; }
+
+    /* canvas border */
+    #skillsCanvas { border-radius: 0.5rem; width:100%; height:180px; display:block; }
+
+    /* sticky header color change */
+    .navbar-scrolled { background: rgba(255,255,255,0.95) !important; box-shadow: 0 6px 20px rgba(15,23,42,0.08); transition: background .2s; }
+    .dark-theme .navbar-scrolled { background: rgba(10,12,16,0.9) !important; }
+
+    /* small responsive tweaks */
+    @media (max-width:575px){
+      .hero { padding: 2rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header>
+    <nav id="mainNav" class="navbar navbar-expand-lg navbar-light fixed-top py-3">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" class="me-2">
+            <rect width="24" height="24" rx="6" fill="#0d6efd"></rect>
+            <text x="12" y="16" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">V</text>
+          </svg>
+          <span class="fw-bold">Vignesh</span>
+          <small class="text-muted ms-2">· Web Tech Tag-Zoo</small>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navCollapse">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
+            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+            <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            <li class="nav-item ms-2">
+              <form class="d-flex" role="search">
+                <input class="form-control form-control-sm me-2" type="search" placeholder="Quick search" aria-label="Search">
+                <button class="btn btn-sm btn-outline-primary" type="submit">Go</button>
+              </form>
+            </li>
+            <li class="nav-item ms-3">
+              <button id="themeToggle" class="btn btn-sm btn-outline-secondary" title="Toggle dark mode">🌗</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="mt-5 pt-5">
+    <div class="container py-5">
+
+      <!-- HERO -->
+      <section class="hero p-5 mb-4 rounded-4 position-relative overflow-hidden">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-7">
+            <h1 class="display-5 fw-bold mb-2">
+              <span class="badge badge-cta rounded-pill me-2">Showcase</span>
+              Vignesh — Frontend Tactician
+            </h1>
+
+            <p class="lead">A static portfolio that sneaks in 50+ unique HTML tags, Bootstrap components, and interactive elements — made fast.</p>
+
+            <p>
+              <mark title="This highlights important text">Hand-built</mark> components, <abbr title="HyperText Markup Language">HTML</abbr> tag variety, and Bootstrap styling melange.
+            </p>
+
+            <div class="d-flex gap-2">
+              <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#contactModal">Hire Me</button>
+              <button id="openDialogBtn" class="btn btn-outline-primary">Quick Contact (dialog)</button>
+              <a href="#projects" class="btn btn-outline-dark">See Projects</a>
+            </div>
+
+            <p class="mt-4 small text-muted">Auto-greeting: <strong id="greeting">Hello!</strong></p>
+
+            <!-- old-school marquee & blink -->
+            <div class="mt-3">
+              <marquee behavior="scroll" direction="left" class="d-none d-md-block"><span>⚡ Emergency demo build — many tags inside. Good luck to me & you! ⚡</span></marquee>
+              <div class="d-md-none marquee glass p-2"><span>⚡ Mobile marquee fallback — many tags inside. ⚡</span></div>
+              <blink class="ms-2 text-danger">[legacy blink]</blink>
+            </div>
+          </div>
+
+          <div class="col-lg-5">
+            <!-- Fancy card with many tags inside -->
+            <article class="card border-0 shadow-lg p-4 glass">
+              <figure class="d-flex align-items-start gap-3">
+                <svg width="80" height="80" viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#7c3aed"></rect></svg>
+                <figcaption>
+                  <h5 class="mb-0">Vignesh — Web Tech</h5>
+                  <small class="text-muted">Student · Engineer</small>
+                </figcaption>
+              </figure>
+
+              <hr>
+
+              <p class="mb-1"><strong>Key tags used:</strong></p>
+              <ul class="list-unstyled small mb-0">
+                <li>&lt;details&gt;, &lt;summary&gt;, &lt;dialog&gt;</li>
+                <li>&lt;progress&gt;, &lt;meter&gt;, &lt;datalist&gt;</li>
+                <li>&lt;table&gt;, &lt;canvas&gt;, &lt;svg&gt;, &lt;figure&gt;</li>
+              </ul>
+
+              <div class="mt-3">
+                <a href="#skills" class="btn btn-sm btn-primary">See Skills</a>
+                <a href="#projects" class="btn btn-sm btn-outline-dark">Projects</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="mb-5">
+        <div class="row">
+          <div class="col-md-8">
+            <h2>About <small class="text-muted">who I am</small></h2>
+            <p>I build small interactive static experiences using pure HTML, Bootstrap, and a little vanilla JavaScript. This page intentionally uses many tags to demonstrate understanding of the DOM and semantic HTML.</p>
+
+            <blockquote class="blockquote ps-3 border-start border-3">
+              <p class="mb-0"><q cite="#">Build first, perfect later — shipping teaches you speed and taste</q></p>
+              <cite class="d-block mt-2">— Personal philosophy</cite>
+            </blockquote>
+
+            <p>Contact address (example):</p>
+            <address>
+              Vignesh<br> Chennai, India<br> <a href="mailto:you@example.com">you@example.com</a>
+            </address>
+
+            <hr>
+
+            <!-- details/summary demonstration -->
+            <details class="mb-3">
+              <summary class="fw-semibold">Quick facts (click to expand)</summary>
+              <dl class="row mt-2">
+                <dt class="col-sm-3">Role</dt><dd class="col-sm-9">Student & Engineer</dd>
+                <dt class="col-sm-3">Preferred Name</dt><dd class="col-sm-9">Vignesh</dd>
+                <dt class="col-sm-3">Tools</dt><dd class="col-sm-9">HTML · CSS · Bootstrap · Vanilla JS</dd>
+              </dl>
+            </details>
+
+            <!-- preformatted example -->
+            <pre><code>&lt;details&gt; &lt;summary&gt;Quick facts&lt;/summary&gt; ... &lt;/details&gt;</code></pre>
+
+          </div>
+
+          <aside class="col-md-4">
+            <div class="card p-3">
+              <h5 class="card-title">Mini CV</h5>
+              <p class="card-text small">Student at college, building quick web prototypes and dev tools. Loves concise code and tag experiments.</p>
+
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">JavaScript — Intermediate</li>
+                <li class="list-group-item">HTML & CSS — Strong</li>
+                <li class="list-group-item">Bootstrap — Strong</li>
+              </ul>
+
+              <div class="mt-3">
+                <button class="btn btn-sm btn-outline-primary" id="showToastBtn">Show Toast</button>
+                <button class="btn btn-sm btn-outline-secondary" id="openDialogFromAside">Open Dialog</button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills" class="mb-5">
+        <h2>Skills <small class="text-muted">(interactive)</small></h2>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="card p-3 h-100">
+              <h5 class="card-title">Slider → meter &amp; output</h5>
+
+              <label for="skillRange" class="form-label">Confidence level</label>
+              <input id="skillRange" class="form-range" type="range" min="0" max="100" value="70">
+
+              <p class="mt-2">Live value: <output id="sliderOutput">70</output>%</p>
+
+              <p>Measured meter:</p>
+              <meter id="skillMeter" min="0" max="100" value="70">70/100</meter>
+
+              <hr>
+
+              <p class="mb-1">Progress (animated)</p>
+              <div class="progress">
+                <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 70%">70%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card p-3 h-100">
+              <h5 class="card-title">Canvas Doodle &amp; SVG</h5>
+              <!-- canvas usage -->
+              <canvas id="skillsCanvas" width="600" height="180" role="img" aria-label="Skill doodle"></canvas>
+
+              <div class="mt-3">
+                <svg width="100%" height="60" viewBox="0 0 100 20" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="g1" x1="0" x2="1">
+                      <stop offset="0" stop-color="#7c3aed"/>
+                      <stop offset="1" stop-color="#2563eb"/>
+                    </linearGradient>
+                  </defs>
+                  <rect x="0" y="0" width="100" height="20" fill="url(#g1)"></rect>
+                  <text x="50" y="13" text-anchor="middle" font-size="8" fill="#fff">SVG Decorative Bar</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="row">
+          <div class="col-md-4">
+            <h6>Skill chips</h6>
+            <p>
+              <span class="badge bg-primary">HTML</span>
+              <span class="badge bg-success">CSS</span>
+              <span class="badge bg-info text-dark">Bootstrap</span>
+              <span class="badge bg-warning text-dark">JS</span>
+            </p>
+          </div>
+
+          <div class="col-md-8">
+            <h6>Interactive tag demo</h6>
+            <p>
+              Use the <code>&lt;datalist&gt;</code> input below to see tag-aware suggestions:
+            </p>
+
+            <form class="row g-2 align-items-center">
+              <div class="col-auto">
+                <label for="techInput" class="col-form-label">Choose tech:</label>
+              </div>
+              <div class="col-auto">
+                <input list="techList" id="techInput" class="form-control" placeholder="Type 'ht'">
+                <datalist id="techList">
+                  <option value="HTML"></option>
+                  <option value="CSS"></option>
+                  <option value="Bootstrap"></option>
+                  <option value="JavaScript"></option>
+                  <option value="TypeScript"></option>
+                </datalist>
+              </div>
+              <div class="col-auto">
+                <button type="button" id="applyTech" class="btn btn-sm btn-outline-primary">Apply</button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS (cards + accordion + table) -->
+      <section id="projects" class="mb-5">
+        <h2>Projects</h2>
+
+        <!-- Carousel (bootstrap) with cards as slides (no external images) -->
+        <div id="projectCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="card p-3">
+                <div class="row g-3">
+                  <div class="col-md-8">
+                    <h5>ECG Anomaly Pipeline (Demo)</h5>
+                    <p class="small text-muted">Preprocessing, features, PCA, anomaly labels — research-focused pipeline.</p>
+                    <p><small><strong>Tools:</strong> NumPy, SciPy, custom feature extractor.</small></p>
+                  </div>
+                  <div class="col-md-4 d-flex align-items-center">
+                    <div class="w-100">
+                      <div class="progress mb-2">
+                        <div class="progress-bar" style="width:65%">65%</div>
+                      </div>
+                      <small class="text-muted">Status: Rework features</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="card p-3">
+                <h5>Tag-Zoo Portfolio</h5>
+                <p class="small text-muted">One-page static portfolio packed with semantic and legacy tags.</p>
+                <p><small>Goal: Max unique tag coverage + Bootstrap features.</small></p>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="card p-3">
+                <h5>Mini Tools</h5>
+                <p class="small text-muted">Small JS utilities — theme toggler, greeting, counter animation.</p>
+              </div>
+            </div>
+          </div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+        <!-- Accordion showing more project details -->
+        <div class="accordion accordion-flush mb-4" id="projectAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                Project Details — ECG Pipeline
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#projectAccordion">
+              <div class="accordion-body">
+                <p>Steps: 1) PCA on features, 2) labeling, 3) modeling, 4) evaluation, 5) deployment.</p>
+                <p>Features stored as NumPy arrays, multi-label probabilistic outputs targeted.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table with many table-specific tags -->
+        <table class="table table-striped table-hover caption-top">
+          <caption>Project summary table</caption>
+          <colgroup>
+            <col style="width:40%">
+            <col style="width:30%">
+            <col style="width:30%">
+          </colgroup>
+          <thead class="table-light">
+            <tr><th>Project</th><th>Tech</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>ECG Pipeline</td><td>Python, NumPy, SciPy</td><td><span class="badge bg-warning">In Progress</span></td></tr>
+            <tr><td>Tag-Zoo Portfolio</td><td>HTML, Bootstrap, JS</td><td><span class="badge bg-success">Ready</span></td></tr>
+            <tr><td>Mini Tools</td><td>JavaScript</td><td><span class="badge bg-info text-dark">Demo</span></td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td colspan="3"><small class="text-muted">Generated: <time datetime="2025-09-01">Sep 1, 2025</time></small></td></tr>
+          </tfoot>
+        </table>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="mb-5">
+        <h2>Contact</h2>
+
+        <div class="row">
+          <div class="col-lg-7">
+            <form id="contactForm" class="needs-validation" novalidate>
+              <fieldset>
+                <legend>Get in touch</legend>
+                <div class="mb-3 form-floating">
+                  <input type="text" class="form-control" id="nameInput" placeholder="Your name" required>
+                  <label for="nameInput">Name</label>
+                  <div class="invalid-feedback">Please provide your name.</div>
+                </div>
+
+                <div class="mb-3 form-floating">
+                  <input type="email" class="form-control" id="emailInput" placeholder="name@example.com" required>
+                  <label for="emailInput">Email</label>
+                  <div class="invalid-feedback">Please include a valid email.</div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="subjectSelect" class="form-label">Subject</label>
+                  <select id="subjectSelect" class="form-select">
+                    <option value="hi">Hi</option>
+                    <option value="work">Work</option>
+                    <option value="collab">Collaboration</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="messageArea" class="form-label">Message</label>
+                  <textarea id="messageArea" class="form-control" rows="4"></textarea>
+                </div>
+
+                <div class="mb-3">
+                  <label for="projectCount" class="form-label">Number of projects you've seen</label>
+                  <input id="projectCount" type="number" class="form-control" min="0" value="1">
+                </div>
+
+                <div class="mb-3">
+                  <label for="roleChoice" class="form-label">Role</label>
+                  <input list="roles" id="roleChoice" class="form-control" placeholder="Type role">
+                  <datalist id="roles">
+                    <option value="Recruiter"></option>
+                    <option value="Hiring Manager"></option>
+                    <option value="Peer"></option>
+                    <option value="Friend"></option>
+                  </datalist>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Send</button>
+                <button type="reset" class="btn btn-outline-secondary">Reset</button>
+
+              </fieldset>
+            </form>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="card p-3">
+              <h5>Quick contact (dialog)</h5>
+              <p class="small text-muted">Click the button below to open a native &lt;dialog&gt; contact preview.</p>
+              <button id="quickDialogOpen" class="btn btn-sm btn-primary">Open contact preview</button>
+
+              <hr>
+
+              <h6>Quick stats</h6>
+              <p><strong id="projectCountAnimated">0</strong> projects</p>
+
+              <!-- progress and meter to show candidate fit -->
+              <p>Fit meter: <meter id="fitMeter" min="0" max="10" value="7">7/10</meter></p>
+              <p>Application progress:</p>
+              <progress id="appProgress" value="60" max="100">60%</progress>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-light py-4 mt-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <small>&copy; <time id="copyrightYear"></time> Vignesh — Built with many tags.</small>
+          <address class="d-block">Chennai, India</address>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <a class="btn btn-outline-dark btn-sm rounded-circle me-1" href="#" aria-label="Twitter">T</a>
+          <a class="btn btn-outline-dark btn-sm rounded-circle me-1" href="#" aria-label="GitHub">G</a>
+          <a class="btn btn-outline-dark btn-sm rounded-circle" href="#" aria-label="LinkedIn">L</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal: Contact -->
+  <div class="modal fade" id="contactModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Contact me</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p class="small text-muted">This modal contains a short contact form (demo only).</p>
+          <form id="modalContact">
+            <div class="mb-2">
+              <label for="mname" class="form-label">Name</label>
+              <input id="mname" class="form-control" />
+            </div>
+            <div class="mb-2">
+              <label for="mmsg" class="form-label">Message</label>
+              <textarea id="mmsg" class="form-control"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button id="modalSend" class="btn btn-primary">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Native dialog demo -->
+  <dialog id="contactDialog">
+    <form method="dialog" class="p-3">
+      <h4>Quick Contact</h4>
+      <p class="small text-muted">This is a native &lt;dialog&gt; element demo.</p>
+      <p><label>Name: <input id="dlgName"></label></p>
+      <menu>
+        <button value="cancel">Cancel</button>
+        <button id="dlgConfirm" value="confirm">Confirm</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <!-- Toast (placed at bottom right) -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index:2000">
+    <div id="welcomeToast" class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">Welcome to my Bootstrap tag-zoo portfolio!</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap bundle JS (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    /* --------------- INITIAL UI HOOKS --------------- */
+    (function(){
+      // Fill current year
+      document.getElementById('copyrightYear').textContent = new Date().getFullYear();
+      document.querySelector('time').textContent = new Date().toLocaleString();
+
+      // Navbar scroll behavior
+      const nav = document.getElementById('mainNav');
+      function handleNavScroll(){
+        if(window.scrollY > 20) nav.classList.add('navbar-scrolled'); else nav.classList.remove('navbar-scrolled');
+      }
+      window.addEventListener('scroll', handleNavScroll);
+      handleNavScroll();
+
+      // Bootstrap tooltip/popover init
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      tooltipTriggerList.map(function (el) { return new bootstrap.Tooltip(el); });
+
+      var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+      popoverTriggerList.map(function (el) { return new bootstrap.Popover(el); });
+
+      // Show toast on demand and also when clicking the show button
+      var toastEl = document.getElementById('welcomeToast');
+      var toast = new bootstrap.Toast(toastEl, {delay: 4000});
+      document.getElementById('showToastBtn').addEventListener('click', () => toast.show());
+      // show once on page load
+      window.addEventListener('load', () => { setTimeout(()=> toast.show(), 700); });
+
+      // Theme toggle (persist in localStorage)
+      const themeToggle = document.getElementById('themeToggle');
+      function applyTheme(dark){
+        if(dark) document.body.classList.add('dark-theme'); else document.body.classList.remove('dark-theme');
+        localStorage.setItem('dark-theme', !!dark);
+      }
+      const pref = localStorage.getItem('dark-theme') === 'true';
+      applyTheme(pref);
+      themeToggle.addEventListener('click', ()=> applyTheme(!document.body.classList.contains('dark-theme')));
+
+      // Greeting by time
+      const greetingEl = document.getElementById('greeting');
+      (function updateGreeting(){
+        const hour = new Date().getHours();
+        let g = 'Hello';
+        if(hour < 12) g = 'Good morning';
+        else if(hour < 18) g = 'Good afternoon';
+        else g = 'Good evening';
+        greetingEl.textContent = g + ' — welcome!';
+      })();
+
+      // Form validation (Bootstrap)
+      (function bootstrapValidation(){
+        const form = document.getElementById('contactForm');
+        form.addEventListener('submit', function(e){
+          e.preventDefault();
+          form.classList.add('was-validated');
+          if(form.checkValidity()){
+            // Show a quick success toast
+            const tmp = new bootstrap.Toast(toastEl, {delay:2000}); tmp.show();
+          }
+        });
+      })();
+
+    })();
+
+    /* -------------- Range -> meter/progress/output -------------- */
+    (function(){
+      const range = document.getElementById('skillRange');
+      const output = document.getElementById('sliderOutput');
+      const meter = document.getElementById('skillMeter');
+      const progressBar = document.getElementById('progressBar');
+
+      function syncRange(){
+        const val = range.value;
+        output.value = val;
+        meter.value = val;
+        progressBar.style.width = val + '%';
+        progressBar.textContent = val + '%';
+      }
+
+      range.addEventListener('input', syncRange);
+      syncRange();
+    })();
+
+    /* -------------- Canvas drawing (simple doodle) -------------- */
+    (function(){
+      const canvas = document.getElementById('skillsCanvas');
+      if(canvas && canvas.getContext){
+        const ctx = canvas.getContext('2d');
+        // Clear & draw a simple waveform-ish doodle and labels
+        ctx.clearRect(0,0,canvas.width, canvas.height);
+
+        // background grid
+        ctx.strokeStyle = 'rgba(0,0,0,0.05)';
+        for(let x=0;x<canvas.width;x+=20){
+          ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,canvas.height); ctx.stroke();
+        }
+        for(let y=0;y<canvas.height;y+=20){
+          ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(canvas.width,y); ctx.stroke();
+        }
+
+        // doodle: bezier wave
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = '#2563eb';
+        ctx.beginPath();
+        ctx.moveTo(10, canvas.height/2);
+        ctx.bezierCurveTo(100,10,200,160,300,80);
+        ctx.bezierCurveTo(380,10,520,140,590,40);
+        ctx.stroke();
+
+        // labels
+        ctx.fillStyle = '#0b1220';
+        ctx.font = '14px sans-serif';
+        ctx.fillText('Canvas doodle: skill waveform', 12, 18);
+      }
+    })();
+
+    /* -------------- Counter animation -------------- */
+    (function(){
+      const el = document.getElementById('projectCountAnimated');
+      let target = 6;
+      let current = 0;
+      function step(){
+        current += Math.ceil((target-current)/6);
+        if(current >= target) { el.textContent = target; } else { el.textContent = current; setTimeout(step, 60); }
+      }
+      step();
+    })();
+
+    /* -------------- Dialog open/close -------------- */
+    (function(){
+      const dlg = document.getElementById('contactDialog');
+      document.getElementById('openDialogBtn').addEventListener('click', ()=> { if(typeof dlg.showModal === 'function'){ dlg.showModal(); } else { alert('Dialog not supported in this browser.'); } });
+      document.getElementById('openDialogFromAside').addEventListener('click', ()=> { if(typeof dlg.showModal === 'function'){ dlg.showModal(); } else { alert('Dialog not supported.'); } });
+      document.getElementById('quickDialogOpen').addEventListener('click', ()=> { if(typeof dlg.showModal === 'function'){ dlg.showModal(); } else { alert('Dialog not supported.'); } });
+      // set up confirm to close
+      document.getElementById('dlgConfirm').addEventListener('click', ()=> dlg.close('confirmed'));
+    })();
+
+    /* -------------- Small interactivity: apply tech button -------------- */
+    (function(){
+      document.getElementById('applyTech').addEventListener('click', ()=>{
+        const val = document.getElementById('techInput').value || 'HTML';
+        // show a temporary toast
+        const toastEl = document.getElementById('welcomeToast');
+        toastEl.querySelector('.toast-body').textContent = 'Applied tech: ' + val;
+        const t = new bootstrap.Toast(toastEl, {delay:2000}); t.show();
+      });
+    })();
+
+    /* -------------- Modal send (demo) -------------- */
+    (function(){
+      document.getElementById('modalSend').addEventListener('click', ()=>{
+        // pretend to send then close modal
+        const modalEl = document.getElementById('contactModal');
+        const modal = bootstrap.Modal.getInstance(modalEl);
+        if(modal) modal.hide();
+        const toastEl = document.getElementById('welcomeToast');
+        toastEl.querySelector('.toast-body').textContent = 'Message sent (demo)';
+        new bootstrap.Toast(toastEl,{delay:2000}).show();
+      });
+    })();
+
+    /* -------------- Small interactive updates on footer time -------------- */
+    (function(){
+      document.querySelectorAll('time').forEach(t => {
+        if(!t.textContent.trim()) t.textContent = new Date().toLocaleString();
+      });
+    })();
+
+    /* END of inline scripts */
+  </script>
+
+  <!-- legacy tags: <center> and <font> placed deliberately below to show legacy usage (works for many browsers) -->
+  <center class="mt-2">This page also includes legacy tags like &lt;center&gt; and &lt;font&gt; for tag-count demonstration.</center>
+  <font color="#7c3aed">Legacy &lt;font&gt; example text — intentionally included.</font>
+
+</body>
+</html>
